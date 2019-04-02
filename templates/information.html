@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+	
+      {% if uname %}
+	  {% for u in userdetails %}
+	 
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+	
+{% endblock %}
+
+
+{% block content1 %}
+	
+	{% for c in categories %}
+	
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+
+{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/purchased.css' %}">
+<link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+<body>
+		<article>
+			<table align="center" border="1">
+				<tr>
+					<td colspan="7" class="header"><h1>Crop Calander</h1></td>
+				</tr>
+				<tr>
+					<th>Crop</th>
+					<th>State</th>
+					<th>Season</th>
+					<th>From</th>
+					<th>To</th>
+					<th>Period</th>
+				</tr>
+				
+				<tr>
+					<td>Wheat</td>
+					<td>ANDHRA PRADESH <br>ASSAM<br><br>BIHAR<br><br>HARYANA<br><br>KARNATAKA<br><br></td>
+					<td>Rabi <br> Rabi<br> Rabi<br> Rabi<br> Rabi<br> Rabi<br> Rabi<br> Rabi<br> Rabi</td>
+					<td>October (Beg)<br>January (Beg)<br>March (Beg)<br>November (Mid)<br>March (Mid)<br>October (End)<br>April (Mid)<br>October (Beg)<br>January (Beg)</td>
+					<td>February (Mid)<br>May (Beg)<br>April (End)<br>December (End)<br>April (End)<br>December (Beg)<br>April (End)<br>February (End)<br>February (End)</td>
+					<td>Sowing<br>Sowing <br>Harvesting<br>Sowing<br>Harvesting<br>Sowing<br>Harvesting<br>Sowing<br>Harvesting</td>
+				</tr>
+				
+				<tr>
+					<td>Maize</td>
+					<td>ANDHRA PRADESH<br><br>ASSAM<br><br>KARNATAKA<br><br><br></td>
+					<td>Kharif<br>Kharif<br>Rabi<br>Summer<br>Kharif<br>Rabi<br>Summer</td>
+					<td>June (Beg)<br>January (Beg)<br>January (Beg)<br>January (Beg)<br>January (Beg)<br>December (Beg)<br>December (Beg)<br>April (Beg)</td>
+					<td>August (Mid)<br>January (Mid)<br>May (Beg)<br>December (Beg)<br>December (End<br>March (Beg)<br>March (Beg)<br>August (Beg)</td>
+					<td>Sowing<br>Harvesting<br>Sowing<br>Sowing<br>Sowing<br>Sowing<br>Sowing</td>
+				</tr>
+
+
+				<tr>
+					<td>Rice/Paddy</td>
+					<td>ANDHRA PRADESH<br><br>ASSAM<br><br>BIHAR<br><br>HARYANA<br><br>KARNATAKA<br><br></td>
+					<td>Kharif<br> Kharif<br> Kharif<br> Summer<br> Kharif<br> Kharif<br>Kharif<br>Rabi<br>Kharif<br>Rabi</td>
+					<td>June (Beg))<br>January (Beg)<br>May (Beg)<br>March (Beg)<br>June (Mid)<br>November (End)<br>June (Beg)<br>October (Mid)<br>July (Mid)<br>August (Beg)</td>
+					<td>July (Beg)<br>December (End)<br>July (Beg)<br>June (Beg)<br>July (Beg)<br>December (End)<br>July (Beg)<br>November (End)<br>June (Mid)<br>September (End</td>
+					<td>Sowing<br>Harvesting<br>Harvesting<br>Sowing<br>Sowing<br>Harvesting<br>Sowing<br>Harvesting<br>Sowing<br>Harvesting</td>
+				</tr>
+				
+				<tr>
+					<td>Gram</td>
+					<td>ANDHRA PRADESH<br>ASSAM<br>HARYANA<br><br>KARNATAKA<br><br></td>
+					<td>Rabi <br> Kharif<br>Rabi<br>Rabi<br>Rabi<br>Rabi</td>
+					<td>October (Beg)<br>August (Beg)<br>October (Beg)<br>March (Mid)<br>October (Beg)<br>November (End)</td>
+					<td>December (Beg)<br>November (Beg)<br>October (Mid)<br>March (End)<br>January (Beg)<br>March (End)</td>
+					<td>Sowing<br>Sowing<br>Sowing<br>Harvesting<br>Sowing<br>Harvesting</td>
+				</tr>	
+				
+				<tr>
+					<td>Peas</td>
+					<td>ANDHRA PRADESH<br><br>HARYANA<br>KARNATAKA<br></td>
+					<td>Kharif <br>Kharif<br>Rabi<br>Rabi</td>
+					<td>March (Beg)<br>January (Beg)<br>November (Beg)<br>August (Beg)</td>
+					<td>June (End)<br>December (End)<br>January (Beg)<br>December (Beg)</td>
+					<td>Sowing<br>Sowing<br>Sowing<br>Sowing</td>
+				</tr>		
+			</table>
+		</article>
+	</body>
+{% endblock %}

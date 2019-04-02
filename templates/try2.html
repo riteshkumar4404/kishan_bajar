@@ -1,0 +1,90 @@
+{% load static %}
+
+<html>
+	<head>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.8">
+		
+		<title>{% block title %}KISSAN BAZAR{%endblock%}</title>
+		<script src="{% static 'js/carousel.js' %}"></script>
+		
+		<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="js/bootstrap.min.js"></script>
+		<script src="{% static 'js/bootstrap.js' %}"></script>
+        <script>
+            $("#mycarousel").carousel();
+        </script>
+		
+		<link rel="stylesheet"href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet"href="{% static 'css/bootstrap.css' %}">
+		<link rel="stylesheet"href="{% static 'css/mdb.min.css' %}"><!--adjusting the hight according to the page--> 
+		<link rel="stylesheet"href="{% static 'css/style2.css' %}">
+		<link rel="stylesheet"href="{% static 'css/bootstrap1.css' %}">
+		<link rel="stylesheet"href="{% static 'css/font-awesome1.min.css' %}">
+		<link rel="stylesheet"href="{% static 'css/um-template.min.css' %}">
+		<link rel="stylesheet"href="{% static 'css/accounts.css' %}">
+		
+		
+		{% block stylesheet %}{% endblock %}
+		
+	</head>
+	<body>
+
+
+<div class="container">
+	<div class="row">
+	
+	<div id="myCarousel" class="carousel slide container" data-ride="carousel" style="overflow:hidden" data-pause="false" data-interval="2000">
+		<ol class ="carousel-indicators">
+			<li data-target="#myCarousel" data-slide-to="0" class="active" ></li>
+			<li data-target="#myCarousel" data-slide-to="1" ></li>
+			<li data-target="#myCarousel" data-slide-to="2"></li>
+			<li data-target="#myCarousel" data-slide-to="3"></li>
+		</ol>
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel item active">
+			<div class="img"> <img src="static/img/0.jpg" alt="sdfghj" class="img-responsive"></div>
+			 <div class="carousel-caption">
+				<h2>Photo 1</h2>
+			</div>
+			</div>
+			<div class="carousel item">
+			<div class="img"> <img src="static/img/1.jpg"  class="img-responsive"></div>
+			  <div class="carousel-caption">
+				<h2>Photo 2</h2>
+			</div>
+			</div>
+			<div class="carousel item">
+			<div class="img"> <img src="static/img/2.jpg"  class="img-responsive"></div>
+			  <div class="carousel-caption">
+				<h2>Photo 3</h2>
+			</div>
+			</div>
+			<div class="carousel item">
+			<div class="img"> <img src="static/img/3.jpg"  class="img-responsive"></div>
+			  <div class="carousel-caption">
+				<h2>Photo 4</h2>
+			</div>
+			</div>
+			
+	</div>
+	</div>
+	
+</div>
+</div>
+	<a class="carousel-control left" href="#myCarousel" data-slide="prev">
+		<span class="icon-prev"></span>
+		
+	</a>
+	<a class="carousel-control right" href="#myCarousel" data-slide="next">
+		<span class="icon-next"></span>
+	</a>
+	
+
+
+
+	</body>
+</html>
+
+	

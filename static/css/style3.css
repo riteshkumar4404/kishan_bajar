@@ -1,0 +1,53 @@
+body
+{
+	font-family:sans-serif;
+	font-size:0.9em;
+	line-height:1.5em;
+	background-image:url(crop.jpg);
+	background-size:cover;
+	background-attachment:fixed;
+}
+
+table
+{	
+	border:1px solid black;
+	border-collapse:collapse;
+	opacity:0.95;
+	width:90%;
+}
+
+th
+{
+	background:#a70000;
+	color:white;
+
+}
+
+tr:nth-child(even)
+{
+	background:#e8e8e8;
+}
+
+tr:nth-child(odd)
+{
+	background:white;
+}
+
+
+.header
+{
+	background:#005cb7;
+	color:white;
+}
+
+th, td
+{	
+	text-align:center;
+	padding:10px;
+}
+
+article
+{
+	overflow-x:auto;
+}
+

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+      {% if uname%}
+	 
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{uname}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="{% url 'changepassword' i %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+{% block content %}
+<head>
+<title>Administration</title>
+<link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+<body>
+
+	<div class="container">
+	<h1><center>ADMINISTRATION</center></h1>
+	</div>
+	</br>
+	<div class="admin">
+    <table align="center" border="1" >
+     	<tr>
+        	<td colspan="5" class="header"><h1>AUTHENTICATION AND AUTHORIZATION</h1></td>
+        </tr>
+        <tr>
+        	<!--<td><h3><a href="{% url 'user' %}">USER</a></h3></td>-->
+			<td><a href="{% url 'user' %}?uname={{uname}}"><button type="button" class="btn btn-primary">USER</button></a></td>
+        </tr>
+        <tr>
+           <!-- <td><h3><a href="{% url 'product' %}">PRODUCTS</a></h3></td>-->
+		   <td><a href="{% url 'product' %}?uname={{uname}}"><button type="button" class="btn btn-primary">PRODUCTS</button></a></td>
+        </tr>
+        <tr>
+           <!-- <td><h3><a href="{% url 'categories' %}">CATEGORIES</a></h3></td>-->
+		   <td><a href="{% url 'categories' %}?uname={{uname}}"><button type="button" class="btn btn-primary">CATEGORIES</button></a></td>
+        </tr>
+        <tr>
+            <!--<td><h3><a href="{% url 'purchased' %}">PURCHASED</a></h3></td>-->
+			<td><a href="{% url 'purchased' %}?uname={{uname}}"><button type="button" class="btn btn-primary">PURCHASED</button></a></td>
+        </tr>
+    </table>
+</div>
+</body>
+{% endblock %}

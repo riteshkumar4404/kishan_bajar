@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+	
+      {% if uname%}
+		{% for u in userdetails %}
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+{% block content1 %}
+	{% for c in categories %}
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/myaccount1.css' %}">
+<link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+	<body>
+
+<div class ="container-fluid">
+	<table border="1" class="order">
+		<tr>
+			<td colspan="9" class="header"><h1>Order Details</h1></td>
+		</tr>
+		<tr>
+			<th>Product Name</th>
+			<th>Product Catogry</th>
+			<th>Rate</th>
+			<th>Quantity</th>
+			<th>Added Tax</th>
+			<th>Payment</th>
+			<th>Seller Name</th>
+
+		</tr>
+		{% for i in purchase %}
+					<tr>
+						<!---<td><div><img src= "/static/media/{{ i.user_detailid.userimgage }}" width="100"/></br>{{ i. }}</div></td>--->
+						
+						<td>{{ i.pid.pname }}</td>
+						<td>{{ i.pid.pcategoryid.categoryname }}</td>
+						<td>{{ i.purchaseprice}}</td>
+						<td>{{ i.pquantity }}</td>
+						<td>{{ i.tax }}</td>
+						<td>{{ i.Tcost }}</td>
+						<td>{{ i.pid.user_detailid.name}}</td>
+
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+
+
+	<div class ="container-fluid">
+	<table border="1" class="user">
+		<tr>
+			<td colspan="9" class="header"><h1>User Details</h1></td>
+		</tr>
+		<tr>
+			<th> Name</th>
+			<th>Email</th>
+			<th>Adress</th>
+			<th>City</th>
+			<th>State</th>
+			<th>Pin</th>
+			
+			<th>Phone</th>
+		</tr>
+		{% for i in userdetails %}
+					<tr>
+						<td><div>{{ i.name }}</div></td>
+						
+						<td>{{ i.email }}</td>
+						<td>{{ i.address }}</td>
+						<td>{{ i.city}}</td>
+						<td>{{ i.state }}</td>
+						<td>{{ i.pin }}</td>
+
+						<td>{{ i.phone }}</td>
+					</tr>
+		{% endfor %}
+	</table>
+</div>
+</br>
+</br>
+<div class ="container-fluid">
+	<table border="1" class="product">
+		<tr>
+			<td colspan="9" class="header"><h1>Product Details</h1></td>
+		</tr>
+		<tr>
+			<th>Product Name</th>
+			<th>Product Description</th>
+	
+			<th>Product Quantity</th>
+			<th>Product Price</th>
+			<th>Uploaded Date</th>
+		</tr>
+		{% for i in productdetails %}
+					<tr>
+						<td><div><img src= "/static/media/{{ i.pimg }}" width="100"/></br>{{i.pname}}</div></td>
+						<td>{{ i.pdescription }}</td>
+						
+						<td>{{ i.pquantity }}</td>
+						<td>{{ i.pprice}}</td>
+						<td>{{ i.uploaded_date }}</td>
+					</tr>
+		{% endfor %}
+
+	</table>
+	</div>
+
+
+	{% endblock %}

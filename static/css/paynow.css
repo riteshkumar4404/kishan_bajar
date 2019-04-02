@@ -1,0 +1,73 @@
+body{
+		margin:0;
+		padding:0;
+		background:url(../img/farmers.jpg);
+		background-size:cover;
+		background-position:center;
+		font-family:sans-serif;
+}
+.pay-now{
+	width:320px;
+	height:450px;
+	background:rgba(0,0,0,0.5);
+	color:#fff;
+	top:75%;
+	left:50%;
+	position:absolute;
+	transform:translate(-50%,-50%);
+	box-sizing:border-box;
+	padding:30px 30px;
+}
+
+
+h3{
+	margin:0;
+	padding:0 0 10px;
+	text-align:center;
+	/*font-weight:bold;*/
+}
+	
+.pay-now input{
+		width:100%;
+		margin-bottom:24px;
+}
+
+.pay-now input[type="text"], input[type="password"]
+{
+	border:none;
+	border-bottom:1px solid #fff;
+	background:transparent;
+	outline:none;
+	height:40px;
+	color:#fff;
+	font-size:16px;
+}
+
+.pay-now input[type="submit"]
+{
+		border:none;
+		outline:none;
+		height:40px;
+		background:#lc8adb;
+		color:#fff;
+		font-size:18px;
+		border-radius:20px;
+}
+
+.pay-now input[type="submit"]:hover
+{
+		cursor:pointer;
+		background:#39dc79;
+		color:#000;
+}
+
+.pay-now a{
+	text-decoration:none;
+	font-size:14px;
+	color:#fff;
+}
+
+.pay-now a:hover
+{
+	color:#39dc79;
+}

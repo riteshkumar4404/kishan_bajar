@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+		<article>
+			<table align="center">
+				<tr>
+					<td colspan="10" class="header"><h1>User Details</h1></td>
+				</tr>
+				<tr>
+					<th>User Name</th>
+					<th>Name</th>
+					<th>User Image</th>
+					<th>Phone no.</th>
+					<th>Email</th>
+					<th>Address</th>
+					<th>City</th>
+					<th>State</th>
+					<th>Pincode</th>
+					<th>Active</th>
+				
+				</tr>
+				
+				<tr>
+				{% for i in userdetails %}
+					<td>{{ i.username }}</td>
+					<td>{{ i.name }}</td>
+					<td>{{ i.userimg }}</td>
+					<td>{{ i.phone }}</td>
+					<td>{{ i.email }}</td>
+					<td>{{ i.address }}</td>
+					<td>{{ i.city }}</td>
+					<td>{{ i.state }}</td>
+					<td>{{ i.pin }}</td>
+					<td>{{ i.active }}</td>
+				{% endfor %}
+				
+				
+				</tr>
+			</table>
+		</article>
+	{% endblock %}
+
+	
+	

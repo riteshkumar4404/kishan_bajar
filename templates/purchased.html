@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+      {% if uname%}
+	 
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{uname}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="{% url 'changepassword' i %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+
+{% block content %}
+<head>
+<title>Product</title>
+<link rel="stylesheet" href="{% static 'css/purchased.css' %}">
+</head>
+<body>
+		<article>
+			<table align="center">
+				<tr>
+					<td colspan="8" class="header"><h1>List of Purchased</h1></td>
+				</tr>
+				<tr>
+					<th>Purchased product Name</th>
+					<th>Purchase Date</th>
+					<th>Purchased Quantity</th>
+					<th>Purchase Price</th>
+					<th>Tax</th>
+					<th>Total Cost</th>
+					<th>Customer Name</th>
+					<th>Seller Name</th>
+				
+				
+				</tr>
+				
+				
+				{% for i in purchased %}
+				<tr>
+					<td>{{ i.pid.pname }}</td>
+					<td>{{ i.purchase_date }}</td>
+					<td>{{ i.pquantity }}</td>
+					<td>{{ i.purchaseprice }}</td>
+					<td>{{ i.tax }}</td>
+					<td>{{ i.Tcost }}</td>
+					<td>{{ i.purchaseuid.name }}</td>
+					<td>{{ i.pid.user_detailid.name }}</td>
+				</tr>
+				{% endfor %}
+				
+			</table>
+		</article>
+</body>
+{% endblock %}
+
+	
+	

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname %}
+	  {% for u in userdetails %}
+	 
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+		
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+
+{% endblock %}
+
+
+
+	
+	{% block content1 %}
+	{% if uname %}
+	{% for c in categories %}
+	{% for u in userdetails %}
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{u.username}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+	{% endfor %}
+	{% else %}
+		{% for c in categories %}
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+	{% endif %}
+{% endblock %}
+	
+
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+
+<div class ="container-fluid">
+	<h3><center>Search Results <B><I></h3>
+		<table class="table ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Results {{msg}}</th>
+					<th>{{length}}</th>
+				</tr>
+				<tbody>
+					{% for lobject in posts %} 
+					
+						
+						<tr>
+							<td>
+							<div>{{lobject.pname}}</div>
+							</td>
+							<td>
+							<div ><a href="{% url 'buynow' %}?cpk1={{lobject.pk}}&uname={{uname}}"><button type="button" class="btn btn-primary" align="right">Buy</button></div>
+							</td>
+								
+						</tr>
+					
+					
+					{% endfor %}
+				
+					
+				</tbody>
+		</table>
+		</div>
+{% endblock %}

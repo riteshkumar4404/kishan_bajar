@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+      {% if uname%}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{uname}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="{% url 'changepassword' i %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+
+
+
+{% block content %}
+<head>
+<title>Product</title>
+<link rel="stylesheet" href="{% static 'css/purchased.css' %}">
+</head>
+<body>
+		<article>
+			<table align="center">
+				<tr>
+					<td colspan="12" class="header"><h1>List of Products</h1></td>
+				</tr>
+				<tr>
+					<th>Product Name</th>
+					<th>Product Description</th>
+					<th>Product Image</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>Upload Date</th>
+					<th>Active</th>
+					<th>Admin Control</th>
+				</tr>
+				
+				{% for i in products %}
+				<tr>
+					<td>{{ i.pname }}</td>
+					<td>{{ i.pdescription }}</td>
+					<td><div><img src= "/static/media/{{ i.pimg }}" width="100"/></br>{{i.pname}}</div></td>
+					<td>{{ i.pquantity }}</td>
+					<td>{{ i.pprice }}</td>
+					<td>{{ i.uploaded_date }}</td>
+					<td>{{ i.active }}</td>
+					<td><a href="{% url 'prodactivate' i.id %}?uname={{uname}}">activate</a>
+					<a href="{% url 'proddeactivate' i.id%}?uname={{uname}}">deactivate</a></td>
+				</tr>
+				{% endfor %}
+				
+				
+			</table>
+		</article>
+</body>
+{% endblock %}
+	
+	

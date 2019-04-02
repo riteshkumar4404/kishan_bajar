@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content2 %}
+<link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+      {% if uname%}
+	 
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{uname}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+
+      <a href="{% url 'changepassword' i %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+
+{% block content %}
+<head>
+<title>Product</title>
+<link rel="stylesheet" href="{% static 'css/purchased.css' %}">
+</head>
+<body>
+		<article>
+			<table align="center">
+				<tr>
+					<td colspan="7" class="header"><h1>Categories</h1></td>
+				</tr>
+				<tr>
+					<th>Category Name</th>
+					<th>Active</th>
+					<th>Admin Control</th>
+				
+				</tr>
+				
+				
+				{% for i in categories %}
+					<tr>
+					<td>{{ i.categoryname }}</td>
+					<td>{{ i.active }}</td>
+					<td><a href="{% url 'cateactivate' i.id %}?uname={{uname}}">activate</a></br>
+					<a href="{% url 'catedeactivate' i.id%}?uname={{uname}}">deactivate</a></td>
+					</tr>
+				{% endfor %}
+				</tr>
+			</table>
+		</article>
+</body>
+{% endblock %}
+
+	
+	

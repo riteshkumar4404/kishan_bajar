@@ -1,0 +1,51 @@
+.wz-slider{
+	width:92%;
+	height:350px;
+	margin:-40px ;
+	margin-left:200px;
+	/*border:20px solid gold;
+	border-radius:10px;
+	box:shadow:0px 0px 20px 5px grey;*/
+	overflow:hidden;
+}
+
+.wz-slider figure img{
+	width:20%;
+	height:360px;
+	font:left;
+	
+}
+
+.wz-slider figure{
+
+	position:relative;
+	width:500%;
+	margin:0px;
+	left:0px;
+	animation: webzone 15s infinite linear;
+	
+	}
+
+@keyframes webzone{
+	0%{left:0%;}
+	15%{left:0%;}
+	20%{left:-100%;}
+	35%{left:-100%;}
+	40%{left:-200%;}
+	60%{left:-200%;}
+	65%{left:-300%;}
+	80%{left:-300%;}
+	/*85%{left:-400%;}
+	/*95%{left:-400%;}
+	/*0%{left:0%;}
+	15%{left:0%;}
+	20%{left:-100%;}
+	35%{left:-100%;}
+	40%{left:-200%;}
+	60%{left:-200%;}
+	65%{left:-300%;}
+	80%{left:-300%;}
+	85%{left:-400%;}
+	100%{left:-400%;}*/
+
+}

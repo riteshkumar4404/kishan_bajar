@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname %}
+	 {% for u in userdetails %}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+	{% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+
+{% endblock %}
+
+
+
+	
+	{% block content1 %}
+	{% for c in categories %}
+	
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	
+	{% endfor %}
+{% endblock %}
+	
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+
+<div class ="container-fluid">
+	<h3><center>Similar Available Products </center></h3>
+		<table class="table ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Product Name</th>
+					<th> Description </th>
+					<th>Price</th>
+					<th>Seller Name</th>
+					<th>Uploaded date/time</th>
+					<th>Click to Buy</th>
+				</tr>
+				<tbody>
+					{% for c in catproduct1 %}
+						<tr>
+							<td>
+							<div><img src= "/static/media/{{ c.pimg }}" width="100"/></br>{{c.pname}}</div>
+							</td>
+							<td>
+							<div >{{c.pdescription}}</a></div>
+							</td>
+							<td>
+							<div >{{c.pprice}}</a></div>
+							</td>
+							<td>
+							<div >{{c.user_detailid.name}}</div>
+							</td>
+							<td>
+							<div >{{c.uploaded_date}}</a></div>
+							</td>
+							<td>
+							<div ><a href="{% url 'buynow' %}?cpk1={{c.pk}}&uname={{uname}}"><button type="button" class="btn btn-primary" align="right">Buy</button></div>
+							</td>
+								
+						</tr>
+					{% endfor %}
+				</tbody>
+		</table>
+		</div>
+{% endblock %}

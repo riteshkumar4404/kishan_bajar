@@ -1,0 +1,66 @@
+
+body{
+	font-family:sens-serif;
+	background:#f5f5f5
+}
+
+table
+{	
+	font-weight:bold;
+	border:3px solid black;
+	opacity:0.95;
+	width:65%;
+	margin:auto;
+	height:450px;
+	top:60%;
+	left:15%;
+	position:absolute;
+
+}
+
+
+h1{
+	
+	font-weight:bold;
+	text-align:center;
+}
+
+th
+{
+	background:#a70000;
+	color:white;
+
+}
+
+th, td
+{	
+	text-align:center;
+	padding:10px;
+}
+
+.header
+{
+	background:#005cb7;
+	color:white;
+}
+
+.admin button[type="button"]
+{
+	font-weight:bold;
+	-webkit-transition:all .5s;
+	-webkit-border-radius:5px;
+	line-height:50px;
+	color:#222222;
+	width:200px;
+	text-align:center;
+	box-shadow:1px 1px 5px rgba(0,0,0,.5),
+			   0px 0px 0px 1px rgba(0,0,0,.1);
+}
+
+
+.admin button[type="button"]:hover
+{
+		color:white;
+		background:#333;
+		cursor:pointer;
+}

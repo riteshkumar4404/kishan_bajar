@@ -1,0 +1,142 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{%block breadcrumb %}
+<!--<div class ="container-fluid">
+	<li class="breadcrumb-item active">Kissan Bazar</li>
+</div>-->
+{% endblock %}
+   
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i class="fa fa-home site-nav--icon"></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+{% block contentsearch %}
+		{% if uname %}
+        	<form  action ="{% url 'search' %}?uname={{uname}}" method ="POST">
+			
+				{% csrf_token %}
+  			<input type="text" name="q" placeholder="Search.." >
+			<button type ="submit" class="btn btn-success">Search</button>
+			</form>
+		{% else %}
+			<form  action ="{% url 'search' %}?uname={{a}}" method ="POST">
+			
+				{% csrf_token %}
+  			<input type="text" name="q" placeholder="Search.." >
+			<button type ="submit" class="btn btn-success">Search</button>
+			</form>
+		{% endif %}
+{% endblock %}
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname %}
+	 {% for u in userdetails %}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+	
+{% endblock %}
+
+
+{% block content1 %}
+	
+	{% for c in categories %}
+	
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+	
+{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/slider.css' %}">
+ <link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+
+<div class="row">
+<div col "col-md-12">
+ 
+<div class="container-fluid">
+	<div class="wz-slider">
+	<figure>
+		<img src="/static/img/footer.jpg"/>
+		<img src="/static/img/images54.jpg"/>
+		<img src="/static/img/images56.jpg"/>
+		<img src="/static/img/images51.jpg"/>
+		<img src="/static/img/images53.jpg"/>
+		
+		<img src="/static/img/images54.jpg"/>
+	</figure>
+</div>
+</div>
+</div>
+</div>
+<br>
+<br>
+<div class="container">
+	<br>
+	<br>
+	<br>
+	<div class="row">
+<div col "col-md-12">
+	<a href="{% url 'userdetails' %}?uname={{uname}}"><center><button type="button" class="btn btn-primary" align="right"> Wanna Sell Products?</button></center>
+	</a>	
+</div>
+</div>
+
+<div class ="container-fluid">
+</br>
+</br>
+</br>
+
+	<h2><center><B>Trending Products<B> </center></h2>
+		<table class="table ">
+			<thead class="thead-dark">
+				<tr>
+					<th>Products</th>
+					<th></th>
+					
+					<th>Product Description </th>
+					
+				</tr>
+				<tbody>
+				{% for i in products %}
+				<tr>
+					<td><a href="{% url 'checking' %}?ipk={{i.pname}}&uname={{uname}}"><div ><img style="border:2px solid black" src= "/static/media/{{i.pimg}}" width="150"/></br><a href="{% url 'checking' %}?ipk={{i.pname}}&uname={{uname}}">{{ i.pname }}</a></div></a></td>
+					<td></td>
+					<td>{{ i.pdescription }}</a></td>
+				</tr>
+				{% endfor %}
+	</tbody>
+	</table>
+</div>
+
+
+<!--{% include 'includes/footer.html' %}-->
+		
+{% endblock %}

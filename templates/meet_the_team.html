@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block breadcrumb %}
+<!--<div class ="container-fluid">
+	<li class="breadcrumb-item active">Kissan Bazar</li>
+</div>-->
+{% endblock %}
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+{% block contentsearch %}
+		{% if uname %}
+        	<form  action ="{% url 'search' %}?uname={{uname}}" method ="POST">
+			
+				{% csrf_token %}
+  			<input type="text" name="q" placeholder="Search.." >
+			<button type ="submit" class="btn btn-success">Search</button>
+			</form>
+		{% else %}
+			<form  action ="{% url 'search' %}?uname={{a}}" method ="POST">
+			
+				{% csrf_token %}
+  			<input type="text" name="q" placeholder="Search.." >
+			<button type ="submit" class="btn btn-success">Search</button>
+			</form>
+		{% endif %}
+{% endblock %}
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname %}
+	 {% for u in user %}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+	
+{% endblock %}
+
+
+{% block content1 %}
+	
+	{% for c in categories %}
+	
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+	
+{% endblock %}
+
+{% block content %}
+
+<style>
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+  
+}
+
+.column {
+  float: left;
+  width: 25%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+</style>
+</head>
+<body>
+<link rel="stylesheet" href="{% static 'css/homebackground.css' %}">
+<div class="container">
+<center><h2> Meet The Team </h2></center>
+<br>
+</div>
+<div class="row">
+  <div class="column">
+    <div class="card">
+      <img src="/static/media/ritesh1.jpg" width="320px">
+      <div class="container">
+        <h2>Ritesh Kumar</h2>
+        <p class="title">Designer & Developer</p>
+        <p>Together We Can Make a Difference</p>
+        <p>riteshkumar140897@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/static/media/kundan1.jpg" width="320px">
+      <div class="container">
+        <h2>Kundan kumar</h2>
+        <p class="title">Developer</p>
+        <p>Together We Can Make a Difference</p>
+        <p>kundan.bvm@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+<div class="column">
+    <div class="card">
+      <img src="/static/media/nitin1.jpg" width="320px">
+      <div class="container">
+        <h2>Nitin</h2>
+        <p class="title">Developer</p>
+        <p>Together We Can Make a Difference</p>
+        <p>nitinnitin789@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <img src="/static/media/subham2.jpg" width="320px">
+      <div class="container">
+        <h2>Shubham</h2>
+        <p class="title">Designer</p>
+        <p>Together We Can Make a Difference</p>
+        <p>shhubham103@gmail.com</p>
+        <p><button class="button">Contact</button></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+{% endblock %}
+

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block breadcrumb %}
+<!--<div class ="container-fluid">
+	<li class="breadcrumb-item active">Kissan Bazar</li>
+</div>-->
+{% endblock %}
+
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname%}
+	 {% for u in userdetails %}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+{% endblock %}
+
+
+{% block content1 %}
+	{% for c in categories %}
+        <li><a href="{% url 'navcategory' %}?cpk={{c.pk}}&uname={{uname}}">{{c.categoryname}}</a></li> 
+	{% endfor %}
+{% endblock %}
+
+
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+<style>
+body{
+		margin:0;
+		padding:0;
+		<!--background:url(../img/images56.jpg);-->
+		background-size:cover;
+		background-position:center;
+		font-family:sans-serif;
+}
+
+.user{
+	width:350px;
+	margin:auto;
+	background:rgba(0,0,0,0.5);
+	margin-top:50px;
+	padding:0px
+}
+form{
+	padding:10px;
+	font-family:arrival;
+	/*border:1px dotted white;*/
+	margin:10px;
+}
+h2{
+	text-align:center;
+	background:orange;
+	color:white;
+	padding:10px;
+	border-radius:10px;
+
+}
+input{
+	padding:10px;
+	margin:5px;
+	border-radius:5px;
+	border:none;
+}
+
+input[type=text], input[type=email], input[type=number], input[type=password]{
+	width:95%;
+}
+input[type=submit]{
+	width:95%;
+	background:orange;
+	cursor:pointer;
+	font-size:18px;
+	font-weight:bold;
+	color:white;
+}
+input[type=submit]:hover{
+	background:yellow;
+}
+select{
+	padding:10px;
+	width:32%;
+	border-radius:5px;
+}
+	
+</style>
+
+</head>
+<body>
+
+<div class ="user">
+	<form method="POST" enctype="multipart/form-data" action="{% url 'userdetails' %}?uname={{uname}}">
+		{% csrf_token %}
+		<!--<h2>User Details</h2>
+		<input type="text" name="name" placeholder="Your Name" required>
+		<input type="email" name="email" placeholder="Your Email" required>
+		<input type="number" name="phone" placeholder="Mobile Number" required max="10000000000">
+		<input type="text" name="address" placeholder="Address" required>
+		<input type="text" name="city" placeholder="City" required>
+		<input type="text" name="sate" placeholder=" State" required>
+		<input type="number" name="pin" placeholder=" Pin" required max="1000000">
+		<div class="form-group">
+			<label for="id_img">User Image</label>
+			<input type="hidden" name="Max_FILE_SIZE" value="4194304" />
+			<input type="file"class="form-control"id="id_image"name="userimg" required />
+		</div>-->
+		<h2>Product Details</h2>
+		<input type="text" name="pname" placeholder="Product Name" required>
+		<input type="text" name="pcategory" placeholder="Product Category" required>
+		<input type="text" name="pdesc" placeholder="Product Description" required>
+		<input type="number" name="pquantity" placeholder="Quantity" required >
+		<input type="number" name="pprice" placeholder="Price (per kg)" required >
+			<div class="form-group">
+			<label for="id_img"><B>Product Image</B></label>
+			<input type="hidden" name="Max_FILE_SIZE" value="4194304" />
+			<input type="file"class="form-control"id="id_image"name="image" required />
+		</div>
+		<button type="submit"class="btn btn-success">Submit</button>
+	</form>
+	{% if uploaded_file_url %}
+    <p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></p>
+	{% endif %}
+</div>
+</body>
+{% endblock %}

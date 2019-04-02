@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block breadcrumb %}
+<!--<div class ="container-fluid">
+	<li class="breadcrumb-item active">Kissan Bazar</li>
+</div>-->
+{% endblock %}
+   
+
+{% block content3 %}
+	<li><a href="{% url 'home' %}?uname={{uname}}"><i class="fa fa-home site-nav--icon"></i>Home</a></li> 
+        	<li><a href="{% url 'info' %}?uname={{uname}}"><i class="fa fa-info site-nav--icon"></i>Info</a></li>
+        	<li><a href="{% url 'contact' %}?uname={{uname}}"><i class="fa fa-phone site-nav--icon"></i>Contact</a></li>
+{% endblock %}
+
+
+
+{% block content2 %}
+ <link rel="stylesheet" href="{% static 'css/dropdown.css' %}">
+
+      {% if uname %}
+	 {% for u in userdetails %}
+	
+	<li>	<div class="dropdown">
+		<button class="dropbtn">{{u.username}}
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+		
+      <a href="{% url 'myaccount' u.id %}">My account</a>
+      <a href="{% url 'changepassword' u.id %}">Change Password</a>
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div></li>
+  {% endfor %}
+      {% else %}
+		
+		<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>
+			{% endif %}
+	</div>
+		<!--<li><a href="{% url 'login' %}"><B>Login</B></a></li>
+        <li><a href="{% url 'signup' %}"><B>Sign Up</B></a></li>-->
+	
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+
+<h2><center>{{msg}}</center></h2>
+</div>
+{% endblock %}
+
+<a href="{url 
